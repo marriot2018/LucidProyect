@@ -18,6 +18,7 @@ qt_add_qml_module(appbattery
     QML_FILES
         Main.qml
         BatteryWidget.qml
+        SOURCES battery.h battery.cpp
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
