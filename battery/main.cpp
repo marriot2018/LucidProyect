@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
         &app,
         []() { QCoreApplication::exit(-1); },
         Qt::QueuedConnection);
-    engine.loadFromModule("battery", "Main");
+    engine.loadFromModule("battery", "BatteryWidget");
 
     return app.exec();
 }
