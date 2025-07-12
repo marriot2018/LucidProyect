@@ -9,13 +9,13 @@
 class Battery : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int batteryCharge READ getValue WRITE setValue)
+    Q_PROPERTY(int batteryPercentage  READ getBatteryPercentage WRITE setBatteryPercentage )
     Q_PROPERTY(QColor color READ getColor)
 public:
     explicit Battery(QObject *parent = nullptr);
 
-    int getValue();
-    void setValue(int data);
+    int getBatteryPercentage();
+    void setBatteryPercentage(int data);
 
     QColor getColor();
 

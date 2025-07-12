@@ -2,22 +2,21 @@ import QtQuick
 import QtQuick.Controls
 import MyBattery 1.0
 
-Window {
+Item {
     id: batteryWidget
     width: 640
     height: 480
-    visible: true
-    title: qsTr("Battery")
     property int batteryValue: 0
+    property alias animationDuration: batteryAnimationUp.duration
 
     Battery {
         id: batteryInfo
         onIncrease: {
-            batteryAnimationUp.to = batteryInfo.batteryCharge
+            batteryAnimationUp.to = batteryInfo.batteryPercentage
             fillRectangle.color = batteryInfo.color
         }
         onDecrease: {
-            batteryAnimationDown.to = batteryInfo.batteryCharge
+            batteryAnimationUp.to = batteryInfo.batteryPercentage
             fillRectangle.color = batteryInfo.color
         }
     }
@@ -29,7 +28,7 @@ Window {
         }
         else if(event.key === Qt.Key_W){
             batteryInfo.decreased(fillRectangle.height)
-            batteryAnimationDown.start()
+            batteryAnimationUp.start()
         }
     }
 
@@ -37,21 +36,15 @@ Window {
         id: batteryAnimationUp
         target: batteryWidget
         property: "batteryValue"
-        duration: 250
-    }
-
-    PropertyAnimation {
-        id: batteryAnimationDown
-        target: batteryWidget
-        property: "batteryValue"
-        duration: 250
     }
 
     Rectangle {
         id: fillRectangle
         focus: true
-        anchors.bottom: rectangleBorder.bottom
-        anchors.left: rectangleBorder.left
+        anchors {
+            bottom: rectangleBorder.bottom
+            left: rectangleBorder.left
+        }
         width: rectangleBorder.width
         height: batteryValue
 
@@ -71,8 +64,10 @@ Window {
     }
 
     Rectangle {
-        anchors.bottom: rectangleBorder.top
-        anchors.horizontalCenter: rectangleBorder.horizontalCenter
+        anchors {
+            bottom: rectangleBorder.top
+            horizontalCenter: rectangleBorder.horizontalCenter
+        }
         color: "black"
         width: 10
         height: 5

@@ -9,7 +9,7 @@ Battery::Battery(QObject *parent) : QObject{parent}
 
 }
 
-int Battery::getValue()
+int Battery::getBatteryPercentage()
 {
     return m_value;
 }
@@ -19,7 +19,7 @@ QColor Battery::getColor()
     return m_color;
 }
 
-void Battery::setValue(int data)
+void Battery::setBatteryPercentage(int data)
 {
     if(p_equation) {
         if (m_value < m_height) {
@@ -44,13 +44,13 @@ void Battery::setValue(int data)
 void Battery::increased(int value)
 {
     p_equation = true;
-    setValue(value);
+    setBatteryPercentage(value);
 }
 
 void Battery::decreased(int value)
 {
     p_equation = false;
-    setValue(value);
+    setBatteryPercentage(value);
 }
 
 void Battery::seedValueSetted(int value, int height)
