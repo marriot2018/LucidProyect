@@ -72,8 +72,4 @@ Item {
         width: 10
         height: 5
     }
-
-    Component.onCompleted: {
-        batteryInfo.seedValueSetted(rectangleBorder.height / 20, rectangleBorder.height)
-    }
 }

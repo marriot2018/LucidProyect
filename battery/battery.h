@@ -22,12 +22,10 @@ public:
 signals:
     void increase();
     void decrease();
-    void seedValueSet();
 
 public slots:
     void increased(int value);
     void decreased(int value);
-    void seedValueSetted(int value, int height);
 
 private:
     void updateColor();

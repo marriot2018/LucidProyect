@@ -3,8 +3,9 @@
 Battery::Battery(QObject *parent) : QObject{parent}
 {
     m_value = 0;
-    s_value = 0;
+    s_value = 10;
     p_equation = 0;
+    m_height = 200;
     p_equation = false;
 
 }
@@ -51,12 +52,6 @@ void Battery::decreased(int value)
 {
     p_equation = false;
     setBatteryPercentage(value);
-}
-
-void Battery::seedValueSetted(int value, int height)
-{
-    s_value = value;
-    m_height = height;
 }
 
 void Battery::updateColor()
