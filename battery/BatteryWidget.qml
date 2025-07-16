@@ -19,11 +19,11 @@ Item {
 
     function progressBarFill(event) {
         if (event.key === Qt.Key_Q) {
-            batteryInfo.increased()
+            batteryInfo.setBatteryPercentage(true)
             batteryAnimationUp.start()
         }
         else if(event.key === Qt.Key_W){
-            batteryInfo.decreased()
+            batteryInfo.setBatteryPercentage(false)
             batteryAnimationUp.start()
         }
     }

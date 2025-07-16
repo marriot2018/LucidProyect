@@ -15,18 +15,12 @@ public:
     explicit Battery(QObject *parent = nullptr);
 
     double getBatteryPercentage();
-    void setBatteryPercentage(bool type);
+    Q_INVOKABLE void setBatteryPercentage(bool type);
 
     QColor getColor();
 
 signals:
-    void increase();
-    void decrease();
     void batteryPercentageChange();
-
-public slots:
-    void increased();
-    void decreased();
 
 private:
     void updateColor();

@@ -17,28 +17,18 @@ QColor Battery::getColor()
 
 void Battery::setBatteryPercentage(bool type)
 {
-    m_value = 0;
-    emit batteryPercentageChange();
-}
-
-
-void Battery::increased()
-{
-    if (m_value < 1) {
-        m_value = m_value + 0.05;
+    if(type) {
+        if (m_value < 1) {
+            m_value = m_value + 0.05;
+        } else {
+            m_value = 1;
+        }
     } else {
-        m_value = 1;
-    }
-    updateColor();
-    emit batteryPercentageChange();
-}
-
-void Battery::decreased()
-{
-    if(m_value <= 0) {
-        m_value = 0;
-    } else {
-        m_value = m_value - 0.1;
+        if(m_value <= 0) {
+            m_value = 0;
+        } else {
+            m_value = m_value - 0.1;
+        }
     }
     updateColor();
     emit batteryPercentageChange();
