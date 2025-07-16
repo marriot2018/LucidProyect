@@ -1,8 +1,11 @@
 #include "battery.h"
 
-Battery::Battery(QObject *parent) : QObject{parent}
+Battery::Battery(QObject *parent) :
+    QObject{parent},
+    m_value(0),
+    m_color(QColor("red"))
 {
-    m_value = 0;
+    updateColor();
 }
 
 double Battery::getBatteryPercentage()
