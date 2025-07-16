@@ -11,23 +11,20 @@ Item {
 
     Battery {
         id: batteryInfo
-        onIncrease: {
-            batteryAnimationUp.to = batteryInfo.batteryPercentage
-            fillRectangle.color = batteryInfo.color
-        }
-        onDecrease: {
-            batteryAnimationUp.to = batteryInfo.batteryPercentage
+        onBatteryPercentageChange: {
+            batteryAnimationUp.to = rectangleBorder.height * batteryPercentage
+            console.log("HOLA" + rectangleBorder.height * batteryPercentage)
             fillRectangle.color = batteryInfo.color
         }
     }
 
     function progressBarFill(event) {
         if (event.key === Qt.Key_Q) {
-            batteryInfo.increased(fillRectangle.height)
+            batteryInfo.increased()
             batteryAnimationUp.start()
         }
         else if(event.key === Qt.Key_W){
-            batteryInfo.decreased(fillRectangle.height)
+            batteryInfo.decreased()
             batteryAnimationUp.start()
         }
     }

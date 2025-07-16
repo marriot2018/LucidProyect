@@ -3,14 +3,9 @@
 Battery::Battery(QObject *parent) : QObject{parent}
 {
     m_value = 0;
-    s_value = 10;
-    p_equation = 0;
-    m_height = 200;
-    p_equation = false;
-
 }
 
-int Battery::getBatteryPercentage()
+double Battery::getBatteryPercentage()
 {
     return m_value;
 }
@@ -20,47 +15,45 @@ QColor Battery::getColor()
     return m_color;
 }
 
-void Battery::setBatteryPercentage(int data)
+void Battery::setBatteryPercentage(bool type)
 {
-    if(p_equation) {
-        if (m_value < m_height) {
-            m_value = data + s_value;
-        } else {
-            m_value = m_height;
-        }
-        updateColor();
-        emit increase();
+    qInfo() << "Setting value" << type;
+    m_value = 0;
+    emit batteryPercentageChange();
+}
+
+
+void Battery::increased()
+{
+    if (m_value < 1) {
+        m_value = m_value + 0.1;
+        qInfo() << "Setting value" << m_value;
     } else {
-        if (m_value <= 0) {
-            m_value = 0;
-        } else {
-            m_value = data - s_value;
-        }
-        updateColor();
-        emit decrease();
+        m_value = 1;
+        qInfo() << "Setting value" << m_value;
     }
+    updateColor();
+    emit batteryPercentageChange();
 }
 
-
-void Battery::increased(int value)
+void Battery::decreased()
 {
-    p_equation = true;
-    setBatteryPercentage(value);
-}
-
-void Battery::decreased(int value)
-{
-    p_equation = false;
-    setBatteryPercentage(value);
+    if(m_value <= 0) {
+        m_value = 0;
+    } else {
+        m_value = m_value - 0.1;
+    }
+    updateColor();
+    emit batteryPercentageChange();
 }
 
 void Battery::updateColor()
 {
-    if (m_value  <= m_height *.05) {
+    if (m_value  <= .05) {
         m_color = QColor("red");
-    } else if ((m_value > m_height *.05) && (m_value <= m_height *.2)) {
+    } else if ((m_value > .05) && (m_value <= .2)) {
         m_color = QColor("orange");
-    } else if ((m_value > m_height *.2) && (m_value <= m_height *.45)) {
+    } else if ((m_value > .2) && (m_value <= .45)) {
         m_color = QColor("yellow");
     } else {
         m_color = QColor("green");

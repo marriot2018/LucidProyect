@@ -9,34 +9,29 @@
 class Battery : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(int batteryPercentage  READ getBatteryPercentage WRITE setBatteryPercentage )
+    Q_PROPERTY(double batteryPercentage  READ getBatteryPercentage WRITE setBatteryPercentage NOTIFY batteryPercentageChange)
     Q_PROPERTY(QColor color READ getColor)
 public:
     explicit Battery(QObject *parent = nullptr);
 
-    int getBatteryPercentage();
-    void setBatteryPercentage(int data);
+    double getBatteryPercentage();
+    void setBatteryPercentage(bool type);
 
     QColor getColor();
 
 signals:
     void increase();
     void decrease();
+    void batteryPercentageChange();
 
 public slots:
-    void increased(int value);
-    void decreased(int value);
+    void increased();
+    void decreased();
 
 private:
     void updateColor();
 
-    int m_value;
-    int s_value;
-    int m_height;
-    bool p_equation;
+    double m_value;
     QColor m_color;
 };
-
-
-
 #endif // BATTERY_H
