@@ -17,7 +17,6 @@ QColor Battery::getColor()
 
 void Battery::setBatteryPercentage(bool type)
 {
-    qInfo() << "Setting value" << type;
     m_value = 0;
     emit batteryPercentageChange();
 }
@@ -26,11 +25,9 @@ void Battery::setBatteryPercentage(bool type)
 void Battery::increased()
 {
     if (m_value < 1) {
-        m_value = m_value + 0.1;
-        qInfo() << "Setting value" << m_value;
+        m_value = m_value + 0.05;
     } else {
         m_value = 1;
-        qInfo() << "Setting value" << m_value;
     }
     updateColor();
     emit batteryPercentageChange();

@@ -12,8 +12,7 @@ Item {
     Battery {
         id: batteryInfo
         onBatteryPercentageChange: {
-            batteryAnimationUp.to = rectangleBorder.height * batteryPercentage
-            console.log("HOLA" + rectangleBorder.height * batteryPercentage)
+            batteryAnimationUp.to = Math.round(rectangleBorder.height * batteryPercentage)
             fillRectangle.color = batteryInfo.color
         }
     }
