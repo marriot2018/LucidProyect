@@ -6,8 +6,12 @@ Window {
     visible: true
     title: qsTr("Cluster")
 
-    BatteryWidget {
-        anchors.centerIn: parent
-        animationDuration: 250
+    // BatteryWidget {
+    //     anchors.centerIn: parent
+    //     animationDuration: 250
+    // }
+
+    Speedo {
+      anchors.centerIn: parent
     }
 }

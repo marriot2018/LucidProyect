@@ -12,6 +12,14 @@ qt_add_executable(appbattery
     main.cpp
 )
 
+
+qt_add_resources(appbattery "qml"
+    PREFIX /
+    FILES
+    images/mask2.png
+    images/needle_1.png
+)
+
 qt_add_qml_module(appbattery
     URI battery
     VERSION 1.0
@@ -19,6 +27,7 @@ qt_add_qml_module(appbattery
         Main.qml
         BatteryWidget.qml
         SOURCES battery.h battery.cpp
+        QML_FILES Speedo.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
