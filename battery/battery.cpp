@@ -48,6 +48,5 @@ void Battery::updateColor()
     } else {
         m_color = QColor("green");
     }
-
     emit colorChange();
 }

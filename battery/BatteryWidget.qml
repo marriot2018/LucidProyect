@@ -11,11 +11,6 @@ Item {
 
     Battery {
         id: batteryInfo
-        onBatteryPercentageChange: {
-            batteryAnimationUp.to = Math.round(rectangleBorder.height * batteryPercentage)
-            //fillRectangle.color = batteryInfo.color
-            batteryAnimationUp.start()
-        }
     }
 
     function progressBarFill(event) {
@@ -25,12 +20,14 @@ Item {
         else if(event.key === Qt.Key_W){
             batteryInfo.setBatteryPercentage(false)
         }
+        batteryAnimationUp.start()
     }
 
     PropertyAnimation {
         id: batteryAnimationUp
         target: batteryWidget
         property: "batteryValue"
+        to: Math.round(rectangleBorder.height * batteryInfo.batteryPercentage)
     }
 
     Rectangle {
