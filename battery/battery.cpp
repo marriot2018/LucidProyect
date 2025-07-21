@@ -30,7 +30,7 @@ void Battery::setBatteryPercentage(bool type)
         if(m_value <= 0) {
             m_value = 0;
         } else {
-            m_value = m_value - 0.1;
+            m_value = m_value - 0.05;
         }
     }
     updateColor();
@@ -48,4 +48,6 @@ void Battery::updateColor()
     } else {
         m_color = QColor("green");
     }
+
+    emit colorChange();
 }

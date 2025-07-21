@@ -10,7 +10,7 @@ class Battery : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(double batteryPercentage  READ getBatteryPercentage WRITE setBatteryPercentage NOTIFY batteryPercentageChange)
-    Q_PROPERTY(QColor color READ getColor)
+    Q_PROPERTY(QColor color READ getColor NOTIFY colorChange)
 public:
     explicit Battery(QObject *parent = nullptr);
 
@@ -21,6 +21,7 @@ public:
 
 signals:
     void batteryPercentageChange();
+    void colorChange();
 
 private:
     void updateColor();
